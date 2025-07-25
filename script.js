@@ -1,41 +1,78 @@
-const uploadInput = document.getElementById("upload");
-const downloadBtn = document.getElementById("download");
-const previewArea = document.getElementById("preview-area");
+const fileInput = document.getElementById("fileInput");
+const convertBtn = document.getElementById("convertBtn");
+const previewContainer = document.getElementById("previewContainer");
 
-let convertedDataUrl = null;
+let selectedFile = null;
 
-uploadInput.addEventListener("change", async (event) => {
+// Handle file input
+fileInput.addEventListener("change", (event) => {
   const file = event.target.files[0];
-  if (!file || file.type !== "image/webp") {
-    alert("Please upload a valid WebP image.");
+  if (!file) return;
+
+  const img = new Image();
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    img.src = e.target.result;
+
+    img.onload = () => {
+      selectedFile = img;
+      previewContainer.innerHTML = "";
+      previewContainer.appendChild(img);
+      img.style.maxWidth = "100%";
+      img.style.maxHeight = "300px";
+      img.style.marginTop = "1rem";
+    };
+  };
+
+  reader.readAsDataURL(file);
+});
+
+// Convert & Download
+convertBtn.addEventListener("click", () => {
+  if (!selectedFile) {
+    alert("Please select an image first.");
     return;
   }
 
-  const img = new Image();
-  img.src = URL.createObjectURL(file);
+  const format = document.querySelector('input[name="format"]:checked').value;
 
-  img.onload = () => {
-    const canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
+  const canvas = document.createElement("canvas");
+  canvas.width = selectedFile.naturalWidth;
+  canvas.height = selectedFile.naturalHeight;
 
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(selectedFile, 0, 0);
 
-    convertedDataUrl = canvas.toDataURL("image/jpeg", 0.92);
+  let mimeType;
+  let extension;
 
-    // Show preview
-    previewArea.innerHTML = `<img src="${convertedDataUrl}" alt="Converted Image" />`;
+  switch (format) {
+    case "jpg":
+      mimeType = "image/jpeg";
+      extension = "jpg";
+      break;
+    case "png":
+      mimeType = "image/png";
+      extension = "png";
+      break;
+    case "webp":
+      mimeType = "image/webp";
+      extension = "webp";
+      break;
+    default:
+      alert("Unsupported format selected.");
+      return;
+  }
 
-    downloadBtn.disabled = false;
-  };
-});
-
-downloadBtn.addEventListener("click", () => {
-  if (!convertedDataUrl) return;
-
-  const link = document.createElement("a");
-  link.href = convertedDataUrl;
-  link.download = "converted.jpg";
-  link.click();
+  canvas.toBlob((blob) => {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `converted.${extension}`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }, mimeType);
 });
