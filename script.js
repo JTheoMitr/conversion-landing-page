@@ -1,13 +1,28 @@
 const fileInput = document.getElementById("fileInput");
+const selectFileButton = document.getElementById("selectFileButton");
+const selectedFileName = document.getElementById("selectedFileName");
 const convertBtn = document.getElementById("convertBtn");
 const previewContainer = document.getElementById("previewContainer");
 
 let selectedFile = null;
 
-// Handle file input
+// Button triggers file input
+selectFileButton.addEventListener("click", () => {
+  fileInput.click();
+});
+
+// Handle file selection
 fileInput.addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (!file) return;
+
+  const allowedTypes = ["image/webp", "image/png", "image/jpeg"];
+  if (!allowedTypes.includes(file.type)) {
+    alert("Please select a valid image file (WebP, PNG, or JPG).");
+    return;
+  }
+
+  selectedFileName.textContent = file.name;
 
   const img = new Image();
   const reader = new FileReader();
