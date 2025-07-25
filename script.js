@@ -36,7 +36,7 @@ fileInput.addEventListener("change", (event) => {
       previewContainer.appendChild(img);
       img.style.maxWidth = "100%";
       img.style.maxHeight = "300px";
-      img.style.marginTop = "1rem";
+      // img.style.marginTop = "1rem";
     };
   };
 
