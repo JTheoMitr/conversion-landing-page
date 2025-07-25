@@ -3,29 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Free WebP to JPG image converter – fast, secure, and browser-based." />
-  <title>WebP to JPG Converter</title>
+  <meta name="description" content="Free WebP image converter – fast, browser-based, no watermarks." />
+  <title>WebP Converter</title>
   <!-- Google Ads -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2448091936586496"
-     crossorigin="anonymous"></script>
-  
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>WebP to JPG Converter</h1>
-    <p>Convert your WebP images to JPG in your browser – fast, free, and private.</p>
-    
-    <input type="file" id="upload" accept=".webp" />
-    <div id="preview-area"></div>
-    <button id="download" disabled>Download JPG</button>
+  <header>
+    <h1>WebP Converter</h1>
+    <p>Convert WebP to JPG, PNG, or back to WebP – free and private.</p>
+  </header>
 
-    <!-- Ad Placeholder -->
-    <div id="ad-container">
-      <!-- AdSense code goes here -->
+  <main>
+    <div class="upload-card">
+      <input type="file" id="fileInput" accept="image/webp,image/jpeg,image/png" />
+      <div id="previewContainer"></div>
+
+      <div class="format-toggle">
+        <label><input type="radio" name="format" value="jpg" checked /> JPG</label>
+        <label><input type="radio" name="format" value="png" /> PNG</label>
+        <label><input type="radio" name="format" value="webp" /> WEBP</label>
+      </div>
+
+      <button id="convertBtn">Convert & Download</button>
     </div>
-  </div>
+  </main>
 
-  <script src="script.js"></script>
+  <footer>
+    <p>No uploads, no tracking – everything runs in your browser.</p>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
