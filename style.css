@@ -77,20 +77,41 @@ button:hover {
 }
 
 .upload-zone {
-  border: 2px dashed #ccc;
-  padding: 2rem;
+  transition: border 0.2s ease, background-color 0.2s ease;
+  border: 2px dashed #d0d0d0;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
   text-align: center;
-  margin-bottom: 1rem;
-  color: #777;
-  transition: background-color 0.2s, border-color 0.2s;
-  min-height: 200px;
+  color: #888;
+  font-size: 14px;
   position: relative;
 }
 
-.upload-zone.dragover {
-  background-color: #f0f0f0;
-  border-color: #888;
+/* Default preview text */
+.upload-zone::before {
+  content: "Drop or select an image file";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  color: #bbb;
+  font-weight: 500;
+  font-size: 15px;
 }
+
+/* Hide text when image is loaded */
+.upload-zone.has-image::before {
+  display: none;
+}
+
+/* On dragover */
+.upload-zone.dragover {
+  border-color: #4285f4;
+  background-color: #eef3fb;
+}
+
 
 .upload-zone img {
   max-width: 100%;
