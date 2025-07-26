@@ -32,25 +32,42 @@
     <p class="text-lg text-gray-600">Convert WebP to JPG, PNG, or back – free and private.</p>
   </header>
 
-  <main class="w-full max-w-xl px-4 mt-10 flex flex-col items-center">
-    <div class="mb-4 flex flex-col items-center gap-2">
-      <input type="file" id="fileInput" accept=".webp,.png,.jpg,.jpeg" class="hidden" />
-      <button id="selectFileButton" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl transition">Choose an Image</button>
-      <span id="selectedFileName" class="text-sm text-gray-500"></span>
-    </div>
+<main class="flex flex-col items-center justify-center flex-grow px-4">
+  <div
+    id="previewContainer"
+    class="upload-zone w-full max-w-xl p-6 border-2 border-dashed border-gray-300 rounded-2xl bg-white shadow-md transition hover:shadow-lg text-center cursor-pointer"
+  >
+    <p class="text-gray-600 text-base mb-2">Drag & drop your image here</p>
+    <p class="text-sm text-gray-400">or</p>
+    <button
+      id="selectFileButton"
+      class="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl transition"
+    >
+      Choose an Image
+    </button>
+    <input
+      type="file"
+      id="fileInput"
+      accept=".webp,.png,.jpg,.jpeg"
+      class="hidden"
+    />
+    <span id="selectedFileName" class="block mt-2 text-sm text-gray-500"></span>
+  </div>
 
-    <div class="bg-white p-6 rounded-2xl shadow-lg w-full">
-      <div id="previewContainer" class="upload-zone mb-4"></div>
+  <div class="format-toggle mt-6 text-center space-x-4">
+    <label class="text-gray-700"><input type="radio" name="format" value="jpg" checked /> JPG</label>
+    <label class="text-gray-700"><input type="radio" name="format" value="png" /> PNG</label>
+    <label class="text-gray-700"><input type="radio" name="format" value="webp" /> WEBP</label>
+  </div>
 
-      <div class="format-toggle mb-4 flex justify-around">
-        <label><input type="radio" name="format" value="jpg" checked /> JPG</label>
-        <label><input type="radio" name="format" value="png" /> PNG</label>
-        <label><input type="radio" name="format" value="webp" /> WEBP</label>
-      </div>
+  <button
+    id="convertBtn"
+    class="mt-6 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-xl transition"
+  >
+    Convert & Download
+  </button>
+</main>
 
-      <button id="convertBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-xl transition">Convert & Download</button>
-    </div>
-  </main>
 
   <section class="max-w-2xl mx-auto px-4 mt-12 text-center text-base text-gray-700">
     <h2 class="text-2xl font-semibold mb-3">Free Online Image Converter</h2>
