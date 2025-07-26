@@ -127,3 +127,7 @@ button:hover {
   font-size: 0.95rem;
   color: #202124;
 }
+
+#selectFileButton {
+  margin-bottom: 1rem;
+}
