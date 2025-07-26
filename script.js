@@ -11,11 +11,8 @@ selectFileButton.addEventListener("click", () => {
   fileInput.click();
 });
 
-// Handle file selection
-fileInput.addEventListener("change", (event) => {
-  const file = event.target.files[0];
-  if (!file) return;
-
+// Shared logic to handle image preview
+function handleFile(file) {
   const allowedTypes = ["image/webp", "image/png", "image/jpeg"];
   if (!allowedTypes.includes(file.type)) {
     alert("Please select a valid image file (WebP, PNG, or JPG).");
@@ -36,11 +33,39 @@ fileInput.addEventListener("change", (event) => {
       previewContainer.appendChild(img);
       img.style.maxWidth = "100%";
       img.style.maxHeight = "300px";
-      // img.style.marginTop = "1rem";
     };
   };
 
   reader.readAsDataURL(file);
+}
+
+// Handle file selection
+fileInput.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    handleFile(file);
+  }
+});
+
+// Drag & Drop functionality
+const uploadZone = document.getElementById("previewContainer");
+
+uploadZone.addEventListener("dragover", (event) => {
+  event.preventDefault();
+  uploadZone.classList.add("dragover");
+});
+
+uploadZone.addEventListener("dragleave", () => {
+  uploadZone.classList.remove("dragover");
+});
+
+uploadZone.addEventListener("drop", (event) => {
+  event.preventDefault();
+  uploadZone.classList.remove("dragover");
+  const file = event.dataTransfer.files[0];
+  if (file) {
+    handleFile(file);
+  }
 });
 
 // Convert & Download
