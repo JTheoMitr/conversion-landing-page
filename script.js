@@ -33,6 +33,7 @@ function handleFile(file) {
       previewContainer.appendChild(img);
       img.style.maxWidth = "100%";
       img.style.maxHeight = "300px";
+      uploadZone.classList.add("has-image");
     };
   };
 
