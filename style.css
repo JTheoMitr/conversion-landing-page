@@ -85,6 +85,7 @@ button:hover {
   text-align: center;
   color: #888;
   font-size: 14px;
+  min-height: 240px; 
   position: relative;
 }
 
