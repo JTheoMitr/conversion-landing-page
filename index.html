@@ -4,32 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Convert WebP images to JPG or PNG format instantly with this free, browser-based tool. Fast, secure, and private - no uploads or watermarks." />
- <title>Free WebP Converter - Convert WebP to JPG or PNG Instantly</title>
+  <title>Free WebP Converter - Convert WebP to JPG or PNG Instantly</title>
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://free-webp-convert.netlify.app/" />
 
-  <!-- Open Graph (for Facebook, LinkedIn, etc.) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Free WebP Converter – Convert WebP to JPG or PNG Instantly" />
   <meta property="og:description" content="Fast, secure WebP to JPG or PNG conversion. No uploads, no watermarks — just clean browser-based image conversion." />
   <meta property="og:url" content="https://free-webp-convert.netlify.app/" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://free-webp-convert.netlify.app/og-image.jpg" />
-  
+
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Free WebP Converter – Convert WebP to JPG or PNG Instantly" />
   <meta name="twitter:description" content="Browser-based WebP to JPG or PNG image converter. 100% private, free, and fast." />
   <meta name="twitter:image" content="https://free-webp-convert.netlify.app/og-image.jpg" />
 
-
   <!-- Google Ads -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2448091936586496" crossorigin="anonymous"></script>
 
-  <!-- Roboto font -->
+  <!-- Roboto Font -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind (via CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Google Analytics -->
@@ -44,47 +41,56 @@
 
 <body class="bg-gradient-to-br from-slate-100 to-white min-h-screen text-gray-800 font-['Roboto'] flex flex-col items-center">
 
+  <!-- New Navigation -->
+  <nav class="w-full max-w-4xl text-sm text-center mt-4 text-gray-600">
+    <ul class="flex justify-center gap-6 flex-wrap">
+      <li><a href="#tool" class="hover:underline">Tool</a></li>
+      <li><a href="#how-it-works" class="hover:underline">How It Works</a></li>
+      <li><a href="#privacy-policy" class="hover:underline">Privacy</a></li>
+    </ul>
+  </nav>
+
   <header class="text-center mt-8">
     <h1 class="text-3xl font-bold mb-2">WebP Converter</h1>
     <p class="text-lg text-gray-600 mb-5">Convert WebP to JPG, PNG, or back – free and private.</p>
   </header>
 
-<main class="flex flex-col items-center justify-center flex-grow px-4">
-  <div
-    id="previewContainer"
-    class="upload-zone w-full max-w-xl p-6 border-2 border-dashed border-gray-300 rounded-2xl bg-white shadow-md transition hover:shadow-lg text-center cursor-pointer"
-  >
-    <p class="text-gray-600 text-base mb-2">Drag & drop your image here</p>
-    <p class="text-sm text-gray-400">or</p>
-    <button
-      id="selectFileButton"
-      class="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl transition"
+  <!-- Tool Section -->
+  <main id="tool" class="flex flex-col items-center justify-center flex-grow px-4">
+    <div
+      id="previewContainer"
+      class="upload-zone w-full max-w-xl p-6 border-2 border-dashed border-gray-300 rounded-2xl bg-white shadow-md transition hover:shadow-lg text-center cursor-pointer"
     >
-      Choose an Image
+      <p class="text-gray-600 text-base mb-2">Drag & drop your image here</p>
+      <p class="text-sm text-gray-400">or</p>
+      <button
+        id="selectFileButton"
+        class="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl transition"
+      >
+        Choose an Image
+      </button>
+      <input
+        type="file"
+        id="fileInput"
+        accept=".webp,.png,.jpg,.jpeg"
+        class="hidden"
+      />
+      <span id="selectedFileName" class="block mt-2 text-sm text-gray-500"></span>
+    </div>
+
+    <div class="format-toggle mt-6 text-center space-x-4">
+      <label class="text-gray-700"><input type="radio" name="format" value="jpg" checked /> JPG</label>
+      <label class="text-gray-700"><input type="radio" name="format" value="png" /> PNG</label>
+      <label class="text-gray-700"><input type="radio" name="format" value="webp" /> WEBP</label>
+    </div>
+
+    <button
+      id="convertBtn"
+      class="mt-6 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-xl transition"
+    >
+      Convert & Download
     </button>
-    <input
-      type="file"
-      id="fileInput"
-      accept=".webp,.png,.jpg,.jpeg"
-      class="hidden"
-    />
-    <span id="selectedFileName" class="block mt-2 text-sm text-gray-500"></span>
-  </div>
-
-  <div class="format-toggle mt-6 text-center space-x-4">
-    <label class="text-gray-700"><input type="radio" name="format" value="jpg" checked /> JPG</label>
-    <label class="text-gray-700"><input type="radio" name="format" value="png" /> PNG</label>
-    <label class="text-gray-700"><input type="radio" name="format" value="webp" /> WEBP</label>
-  </div>
-
-  <button
-    id="convertBtn"
-    class="mt-6 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-xl transition"
-  >
-    Convert & Download
-  </button>
-</main>
-
+  </main>
 
   <section class="max-w-2xl mx-auto px-4 mt-12 text-center text-base text-gray-700">
     <h2 class="text-2xl font-semibold mb-3">Free Online Image Converter</h2>
@@ -93,13 +99,20 @@
     <p class="text-sm mt-4 text-gray-600">No ads in your face, no spam, no logins—just clean, simple image conversion.</p>
   </section>
 
-  <footer class="w-full mt-16 border-t pt-6 pb-8 px-4 text-center text-sm text-gray-500">
-    <p>&copy; 2025 Free WebP Converter. All rights reserved.</p>
-    <div class="mt-2">
-      <a href="#privacy-policy" class="text-blue-600 hover:underline">Privacy Policy</a>
+  <!-- NEW: How It Works Section -->
+  <section id="how-it-works" class="max-w-2xl mx-auto mt-12 px-4 text-base text-gray-700">
+    <div class="bg-white/90 backdrop-blur rounded-2xl shadow p-6">
+      <h2 class="text-xl font-semibold mb-2">How It Works</h2>
+      <ol class="list-decimal list-inside space-y-2 text-left">
+        <li>Select or drag an image into the converter box above.</li>
+        <li>Choose your preferred format: JPG, PNG, or WebP.</li>
+        <li>Click <strong>Convert & Download</strong>. The file is instantly converted and downloaded — no upload needed.</li>
+      </ol>
+      <p class="mt-4 text-sm text-gray-600">All processing happens in your browser using modern JavaScript libraries — ensuring total privacy and instant results.</p>
     </div>
-  </footer>
+  </section>
 
+  <!-- Privacy Policy Section (unchanged) -->
   <section id="privacy-policy" class="max-w-2xl mx-auto mt-12 px-4">
     <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-md p-6 text-center">
       <h2 class="text-xl font-semibold mb-2">Privacy Policy</h2>
@@ -108,6 +121,14 @@
       <p class="mb-2">By using this tool, you agree to these terms. If you have any questions, feel free to contact us.</p>
     </div>
   </section>
+
+  <!-- Footer -->
+  <footer class="w-full mt-16 border-t pt-6 pb-8 px-4 text-center text-sm text-gray-500">
+    <p>&copy; 2025 Free WebP Converter. All rights reserved.</p>
+    <div class="mt-2">
+      <a href="#privacy-policy" class="text-blue-600 hover:underline">Privacy Policy</a>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
